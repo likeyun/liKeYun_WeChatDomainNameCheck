@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>微信域名拦截状态检测</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .container .Result{
+      width: 100%;
+      height: 55px;
+      color: #fff;
+      line-height: 55px;
+      text-indent: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<br/>
+<br/>
+<br/>
+<div class="container mt-3" style="width: 600px;">
+  <h1 style="color: #07c160;">微信域名拦截状态检测</h1>
+  <br/>
+  <form role="form" action="##" onsubmit="return false" method="post" id="wxcheck">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">域名</span>
+      </div>
+      <input type="text" name="url" class="form-control" placeholder="请输入域名或者链接">
+    </div>
+    <button type="button" class="btn btn-dark" onclick="wxcheck()" style="background: #07c160;border:none;">开始检测</button>
+  </form>
+
+  <!-- 结果展示 -->
+  <br/>
+  <div class="Result"></div>
+</div>
+
+<!-- AJAX -->
+<script>
+function wxcheck(){
+    $.ajax({
+        type: "GET",
+        url: "./wxcheck.php",
+        data: $('#wxcheck').serialize(),
+        success:function(data){
+          if (data.code == 200) {
+            $(".container .Result").css("display","block");
+            $(".container h1").css("color","#07c160");
+            $(".container button").css("background","#07c160");
+            $(".container .Result").html("<p style='background:#07c160;width:100%;height:55px;border-radius:6px;'>"+data.msg+"</p>");
+          }else{
+            $(".container .Result").css("display","block");
+            $(".container h1").css("color","#fb5454");
+            $(".container button").css("background","#fb5454");
+            $(".container .Result").html("<p style='background:#fb5454;width:100%;height:55px;border-radius:6px;'>"+data.msg+"</p>");
+          }
+        },
+        error : function() {
+          $(".container .Result").css("display","block");
+          $(".container h1").css("color","#fb5454");
+          $(".container button").css("background","#fb5454");
+          $(".container .Result").html("<p style='background:#fb5454;width:100%;height:55px;border-radius:6px;'>服务器发生错误，可能是域名无法访问造成的</p>");
+        }
+    });
+}
+</script>
+</body>
+</html>
