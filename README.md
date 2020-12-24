@@ -7,4 +7,4 @@
 <img src="https://github.com/likeyun/TANKING/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201224165658.png?raw=true" />
 
 # 作者的开源平台
-http://www.open.likeyun.cn
+http://open.likeyun.cn
