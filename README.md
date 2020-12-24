@@ -13,7 +13,5 @@
 
 否则有可能检测什么域名都是显示被封...
 
-http://域名/目录/wxcheck.php?url=你要检测的域名
-
 # 作者的开源平台
 http://open.likeyun.cn
