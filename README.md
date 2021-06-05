@@ -14,4 +14,4 @@
 否则有可能检测什么域名都是显示被封...
 
 # 作者的开源平台
-http://open.likeyun.cn
+http://www.likeyuns.com
