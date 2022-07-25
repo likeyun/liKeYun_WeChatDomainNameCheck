@@ -13,5 +13,5 @@
 
 否则有可能检测什么域名都是显示被封...
 
-# 作者的开源平台
-http://www.likeyuns.com
+交流、解决问题、定制、学习等可以加入我们的开发者交流群
+https://sc01.alicdn.com/kf/H574da7b723cd4c088b082ab93ab6eb8dV.png
