@@ -1,17 +1,14 @@
-# WxCheck
-微信域名检测，检测域名在微信是否被拦截访问，被屏蔽访问，被禁止访问，被封了
+# WeChatDomainNameCheck
 
-# 截图
+查询你的域名在微信是否被封、被拦截。
 
-<img src="https://github.com/likeyun/TANKING/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201224165615.png?raw=true" /><br/>
-<img src="https://github.com/likeyun/TANKING/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201224165658.png?raw=true" />
+# 如何使用
+```
+http://yourdomain.com/WeChatDomainNameCheck.php?url=你要检测的域名
+```
 
-# 需要开启
-1、openssl<br/>
-2、把allow_url_fopen给启用，改成allow_url_fopen = On<br/>
-3、user_agent="PHP"，默认前面有个 " ; " 去掉即可<br/>
-
-否则有可能检测什么域名都是显示被封...
-
-交流、解决问题、定制、学习等可以加入我们的开发者交流群
-https://sc01.alicdn.com/kf/H574da7b723cd4c088b082ab93ab6eb8dV.png
+# 使用示例
+假设你的域名是：www.qq.com，你要查询域名www.baidu.com，WeChatDomainNameCheck.php已上传至你服务器根目录，正确的调用示例是：
+```
+http://www.qq.com/WeChatDomainNameCheck.php?url=http://www.baidu.com
+```
