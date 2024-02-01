@@ -1,51 +1,57 @@
 <?php
 
-/**
- * 微信域名拦截检测
- * 2022年11月29日编写
- * 作者：TANKING
- * 博客：https://segmentfault.com/u/tanking
- */
+    /**
+     * 微信域名拦截检测
+     * 2024年2月1日编写
+     * 作者：TANKING
+     * 博客：https://segmentfault.com/u/tanking
+     */
 
-// 页面编码
-header("Content-type:application/json");
-
-// 隐藏WARNING
-error_reporting(E_ALL ^ E_WARNING);
-
-// 获取headers
-$checkUrl = get_headers('http://mp.weixinbridge.com/mp/wapredirect?url='.$_REQUEST['url']);
-$headerStr = json_encode($checkUrl);
-
-// 提取Location后面的
-$Location_behind = substr($headerStr, strripos($headerStr, "Location"));
-
-// 判断域名状态
-if($Location_behind == 'false'){
+    // 页面编码
+    header("Content-type:application/json");
     
-    // 该域名无法正常访问
-    $result = array(
-        'code' => 201,
-        'msg' => '该域名无法正常访问，暂时无法查询访问状态'
-    );
-}else if(strpos($Location_behind,'weixin110') !== false){
+    // 获取Url
+    $url = $_GET['url'];
     
-    // Location后面包含weixin110就是被封了
-    // 域名被封
-    $result = array(
-        'code' => 202,
-        'msg' => '域名被封'
-    );
-}else{
+    if($url) {
+        
+        // 调用官方接口
+        $checkUrl = 'https://cgi.urlsec.qq.com/index.php?m=url&a=validUrl&url='.urlencode($url);
+        $ch = curl_init($checkUrl);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        // 返回信息
+        $response = curl_exec($ch);
+        curl_close($ch);
+        
+        $data_msg = json_decode($response)->data;
+        if($data_msg == 'ok') {
+            
+            // 域名被封
+            $result = array(
+                'code' => 202,
+                'msg' => '域名被封'
+            );
+        }else {
+            
+            // 域名正常
+            $result = array(
+                'code' => 200,
+                'msg' => $data_msg
+            );
+        }
+        
+    }else {
+        
+        // 参数为空
+        $result = array(
+            'code' => 202,
+            'msg' => '请传入Url'
+        );
+    }
+        
+    // 输出JSON
+    echo json_encode($result, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
     
-    // 域名被封
-    $result = array(
-        'code' => 200,
-        'msg' => '域名正常'
-    );
-}
-
-// 输出JSON
-echo json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
-
 ?>
