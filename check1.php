@@ -1,10 +1,7 @@
 <?php
 
     /**
-     * 微信域名拦截检测
-     * 2024年2月1日编写
-     * 作者：TANKING
-     * 博客：https://segmentfault.com/u/tanking
+     * 微信域名拦截检测，腾讯安全中心接口
      */
 
     // 页面编码
@@ -55,3 +52,4 @@
     echo json_encode($result, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
     
 ?>
+
