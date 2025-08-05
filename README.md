@@ -31,6 +31,8 @@ http://www.qq.com/check1.php?url=http://www.baidu.com
 |--------------|--------------------------------|
 | `check1.php` | 通过腾讯安全接口检测网址状态   |
 | `check2.php` | 通过公众号接口检测微信拦截状态 |
+<br>
+<img src="https://p5.ssl.qhimg.com/t11b673bcd66fb296783c0378c8.jpg" />
 
 ## ⚠️ 注意事项
 
